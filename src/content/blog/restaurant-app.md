@@ -18,5 +18,5 @@ date: "2025-06"
 - **データクレンジング**: CSVデータの文字コードエラー等を、AIへの相談と段階的な検証を経て解決しました。
 
 ## ■ 関連リンク
-- [Web Application（さくらレンタルサーバURL）](#) 
-- [GitHub Repository](#)
+- [Web Application（さくらレンタルサーバURL）](https://gins-net25.sakura.ne.jp/eshop_search) 
+- [GitHub Repository](https://github.com/kou-gin/Eshop_Search)
