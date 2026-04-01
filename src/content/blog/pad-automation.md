@@ -17,4 +17,4 @@ date: "2026-03"
 - **半自動化のハイブリッド設計**: カテゴリ入力には人間による確認ダイアログを挟み、自動化のスピードとデータの正確性を両立させました。
 
 ## ■ デモ動画
-<video controls width="100%" src="/videos/pad-demo.mp4"></video>
+<video controls width="100%" src="/my-portfolio/videos/pad-demo.mp4"></video>
