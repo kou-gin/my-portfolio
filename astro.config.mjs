@@ -4,5 +4,5 @@ import { defineConfig } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://kou-gin.github.io',
-  base: '/my-portfolio',
+  base: '/my-portfolio'
 });
