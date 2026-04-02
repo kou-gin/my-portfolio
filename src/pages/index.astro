@@ -57,9 +57,20 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
 
       {works.map((work) => (
         <a href={work.url} class={`card card-${work.color}`}>
-          <span class="card-eyebrow">{work.category}</span>
-          <h2 class="card-title">{work.title}</h2>
-          <p class="card-desc">{work.desc}</p>
+          {work.color === "hero" ? (
+            <div>
+              <span class="card-eyebrow">{work.category}</span>
+              <h2 class="card-title">{work.title}</h2>
+              <p class="card-desc">{work.desc}</p>
+            </div>
+          ) : (
+            <>
+              <span class="card-eyebrow">{work.category}</span>
+              <h2 class="card-title">{work.title}</h2>
+              <p class="card-desc">{work.desc}</p>
+            </>
+          )}
+          {work.color === "hero" && <span class="arrow">→</span>}
         </a>
       ))}
 
@@ -196,19 +207,18 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
   /* BENTO */
   .bento {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
     animation: fadeUp .6s .15s ease both;
   }
 
   /* カード共通 */
   .card {
     border-radius: 18px;
-    padding: 20px;
+    padding: 24px 22px;
     text-decoration: none;
     color: inherit;
-    display: flex;
-    flex-direction: column;
+    display: block;
     transition: transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s cubic-bezier(.4,0,.2,1);
   }
   .card:hover {
@@ -226,33 +236,59 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
 
   .card-title {
     font-family: 'Inter', 'Noto Sans JP', sans-serif;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 8px;
-    word-break: keep-all;
+    line-height: 1.2;
+    margin-bottom: 6px;
   }
 
   .card-desc {
-    font-size: 11px;
-    line-height: 1.5;
-    opacity: .8;
-    margin-top: auto;
+    font-size: 12px;
+    line-height: 1.6;
+    opacity: .7;
   }
 
   /* Hero */
   .card-hero {
     background: #1a1a18;
     color: #f2f0eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 24px 16px;
+  }
+  .card-hero .card-title {
+    font-size: clamp(13px, 3vw, 16px);
   }
   .card-hero .card-eyebrow { color: rgba(242,240,235,.4); }
+  .arrow {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: rgba(255,255,255,.6);
+    flex-shrink: 0;
+    transition: background .2s;
+  }
+  .card-hero:hover .arrow { background: rgba(255,255,255,.08); }
 
   /* Green */
   .card-green {
     background: #c5f0da;
+    padding: 24px 16px;
   }
   .card-green .card-eyebrow { color: #1a6640; }
-  .card-green .card-title { color: #0d3320; }
+  .card-green .card-title { 
+    color: #0d3320; 
+    font-size: clamp(11.5px, 2.8vw, 14.5px);
+    white-space: nowrap;
+    letter-spacing: -0.5px;
+  }
   .card-green .card-desc { color: #2a7a50; }
 
   /* Yellow */
@@ -353,6 +389,7 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
 
   @media (max-width: 600px) {
     .bento { grid-template-columns: 1fr; }
+    .card-hero { flex-direction: column; align-items: flex-start; }
     .sns-item { padding: 14px 4px; }
   }
 </style>
