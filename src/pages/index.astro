@@ -5,14 +5,26 @@ const allWorks = await getCollection("blog");
 const sortedWorks = allWorks.sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf());
 
 const cardColors = ["hero", "green", "yellow"];
-const works = sortedWorks.map((post, index) => ({
-  id: post.id,
-  category: post.data.category,
-  title: post.data.title,
-  desc: post.data.technologies.join(" / "),
-  url: `${import.meta.env.BASE_URL}/blog/${post.id}`,
-  color: cardColors[index % cardColors.length],
-}));
+const works = sortedWorks.map((post, index) => {
+  let persuasiveDesc = post.data.technologies.join(" / ");
+  
+  // PDF資料や詳細ページの内容を踏まえた具体的な実績の記述
+  if (post.id.includes("pad-automation")) {
+    persuasiveDesc = "Webからの情報抽出からDB更新までを完全自動化し、作業時間を「30分→2分」へと驚異の90%削減を達成。予期せぬ文字列入力によるシステム停止を防ぐための『SQLエスケープ処理』を組み込むなど、ビジネス現場での安定稼働を重視した設計です。";
+  } else if (post.id.includes("restaurant-app")) {
+    persuasiveDesc = "散在する情報を統合管理する実用的な専用Webアプリを開発。さくらレンタルサーバの『CGI環境でのFlask実行』という技術的ハードルを独自構成でクリアし、複数条件の柔軟な検索機能やセキュアな認証システムを実装しました。";
+  }
+
+  return {
+    id: post.id,
+    category: post.data.category,
+    title: post.data.title,
+    desc: persuasiveDesc,
+    tech: post.data.technologies.join(" / "),
+    url: `${import.meta.env.BASE_URL}/blog/${post.id}`, // or post.slug depending on Astro version
+    color: cardColors[index % cardColors.length],
+  };
+});
 
 const sns = [
   { name: "X", desc: "日々の発信", url: "#" },
@@ -62,12 +74,14 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
               <span class="card-eyebrow">{work.category}</span>
               <h2 class="card-title">{work.title}</h2>
               <p class="card-desc">{work.desc}</p>
+              <p class="card-tech">{work.tech}</p>
             </div>
           ) : (
             <>
               <span class="card-eyebrow">{work.category}</span>
               <h2 class="card-title">{work.title}</h2>
               <p class="card-desc">{work.desc}</p>
+              <p class="card-tech">{work.tech}</p>
             </>
           )}
           {work.color === "hero" && <span class="arrow">→</span>}
@@ -243,9 +257,17 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
   }
 
   .card-desc {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.6;
-    opacity: .7;
+    opacity: .85;
+  }
+
+  .card-tech {
+    font-size: 10.5px;
+    font-family: 'Space Mono', monospace;
+    opacity: 0.6;
+    margin-top: 10px;
+    line-height: 1.4;
   }
 
   /* Hero */
@@ -283,11 +305,12 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
   .card-green .card-eyebrow { color: #1a6640; }
   .card-green .card-title { 
     color: #0d3320; 
-    font-size: clamp(13px, 3.5vw, 18px);
-    white-space: nowrap;
+    font-size: clamp(15px, 3.5vw, 18px);
+    white-space: normal;
     letter-spacing: -0.02em;
   }
-  .card-green .card-desc { color: #2a7a50; }
+  .card-green .card-desc { color: #1a6640; opacity: 0.9; }
+  .card-green .card-tech { color: #2a7a50; }
 
   /* Yellow */
   .card-yellow {
