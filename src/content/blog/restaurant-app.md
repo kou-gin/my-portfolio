@@ -62,7 +62,7 @@ AIへの相談を繰り返しながら解決し、確実なデータインポー
 
 ## ■ 関連リンク
 
-以下は、実際のアプリ、管理画面、Githubのリポジトリリンクを記載しております。<br>
+以下は実際のアプリ、管理画面、Githubのリポジトリを記載しております。<br>
 - [Web Application（さくらレンタルサーバURL）](https://gins-net25.sakura.ne.jp/eshop_search) 
 - [管理画面](https://gins-net25.sakura.ne.jp/eshop_manage)
 - [GitHub Repository](https://github.com/kou-gin/Eshop_Search)
