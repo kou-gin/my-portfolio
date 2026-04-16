@@ -25,11 +25,12 @@ const works = sortedWorks.map((post, index) => {
 });
 
 const sns = [
-  { name: "X", desc: "日々の発信", url: "#" },
-  { name: "Instagram", desc: "ビジュアル", url: "#" },
-  { name: "Note", desc: "記事・技術ログ", url: "#" },
-  { name: "TikTok", desc: "動画コンテンツ", url: "#" },
-  { name: "GitHub", desc: "コードと実績", url: "#" },
+  { name: "X", desc: "日々の発信", url: "https://x.com/kou_gi_io" },
+  { name: "Instagram", desc: "ビジュアル", url: "https://www.instagram.com/kou_gi_io/" },
+  { name: "Threads", desc: "日常のつぶやき", url: "https://www.threads.com/@kou_gi_io" },
+  { name: "Note", desc: "記事・技術ログ", url: "https://note.com/kou_gi_io" },
+  { name: "TikTok", desc: "動画コンテンツ", url: "https://www.tiktok.com/@kou_gi_io" },
+  { name: "GitHub", desc: "コードと実績", url: "https://github.com/kou-gin" },
 ];
 
 const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity", "GitHub", "VSCode"];
@@ -311,7 +312,8 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
   .card-sns {
     grid-column: 1 / -1;
     background: #fff;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     padding: 0;
     overflow: hidden;
     cursor: default;
@@ -319,7 +321,6 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
   .card-sns:hover { transform: none; box-shadow: none; }
 
   .sns-item {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -330,7 +331,7 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
     border-right: 1px solid #f0ede8;
     transition: background .2s;
   }
-  .sns-item:last-child { border-right: none; }
+  .sns-item:nth-child(6n) { border-right: none; }
   .sns-item:hover { background: #f8f6f0; }
 
   .sns-name {
@@ -398,6 +399,12 @@ const skills = ["Python", "Java", "JavaScript", "Power Automate Desktop", "Unity
   @media (max-width: 600px) {
     .bento { grid-template-columns: 1fr; }
     .card-hero { flex-direction: column; align-items: flex-start; }
-    .sns-item { padding: 14px 4px; }
+    .card-sns { grid-template-columns: repeat(3, 1fr); }
+    .sns-item { 
+      padding: 14px 4px;
+      border-bottom: 1px solid #f0ede8;
+    }
+    .sns-item:nth-child(3n) { border-right: none; }
+    .sns-item:nth-last-child(-n+3) { border-bottom: none; }
   }
 </style>
